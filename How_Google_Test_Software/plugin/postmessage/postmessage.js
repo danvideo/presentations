@@ -8,11 +8,19 @@
 	Example:
 		 var reveal =  window.frames[0];
 
+<<<<<<< HEAD
 		 // Reveal.prev(); 
 		 reveal.postMessage(JSON.stringify({method: 'prev', args: []}), '*');
 		 // Reveal.next(); 
 		 reveal.postMessage(JSON.stringify({method: 'next', args: []}), '*');
 		 // Reveal.slide(2, 2); 
+=======
+		 // Reveal.prev();
+		 reveal.postMessage(JSON.stringify({method: 'prev', args: []}), '*');
+		 // Reveal.next();
+		 reveal.postMessage(JSON.stringify({method: 'next', args: []}), '*');
+		 // Reveal.slide(2, 2);
+>>>>>>> copied presentation from master branch
 		 reveal.postMessage(JSON.stringify({method: 'slide', args: [2,2]}), '*');
 
 	Add to the slideshow:
@@ -37,6 +45,9 @@
 	}, false);
 
 }());
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> copied presentation from master branch

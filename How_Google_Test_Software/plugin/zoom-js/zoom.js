@@ -253,4 +253,7 @@ var zoom = (function(){
 	}
 
 })();
+<<<<<<< HEAD
 
+=======
+>>>>>>> copied presentation from master branch

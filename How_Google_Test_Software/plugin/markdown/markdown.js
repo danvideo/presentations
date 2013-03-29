@@ -26,11 +26,19 @@
         return text;
 
     };
+<<<<<<< HEAD
     
     var twrap = function(el) {
       return '<script type="text/template">' + el + '</script>';
     };
     
+=======
+
+    var twrap = function(el) {
+      return '<script type="text/template">' + el + '</script>';
+    };
+
+>>>>>>> copied presentation from master branch
     var slidifyMarkdown = function(markdown, separator, vertical) {
 
         separator = separator || '^\n---\n$';

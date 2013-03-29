@@ -52,6 +52,7 @@ function Hilitor(id, tag)
     }
     if(node.nodeType == 3) { // NODE_TEXT
       if((nv = node.nodeValue) && (regs = matchRegex.exec(nv))) {
+<<<<<<< HEAD
       	//find the slide's section element and save it in our list of matching slides
       	var secnode = node.parentNode;
       	while (secnode.nodeName != 'SECTION') {
@@ -70,6 +71,26 @@ function Hilitor(id, tag)
       		matchingSlides.push(slideIndex);
       	}
       	
+=======
+	//find the slide's section element and save it in our list of matching slides
+	var secnode = node.parentNode;
+	while (secnode.nodeName != 'SECTION') {
+		secnode = secnode.parentNode;
+	}
+
+	var slideIndex = Reveal.getIndices(secnode);
+	var slidelen = matchingSlides.length;
+	var alreadyAdded = false;
+	for (var i=0; i < slidelen; i++) {
+		if ( (matchingSlides[i].h === slideIndex.h) && (matchingSlides[i].v === slideIndex.v) ) {
+			alreadyAdded = true;
+		}
+	}
+	if (! alreadyAdded) {
+		matchingSlides.push(slideIndex);
+	}
+
+>>>>>>> copied presentation from master branch
         if(!wordColor[regs[0].toLowerCase()]) {
           wordColor[regs[0].toLowerCase()] = colors[colorIdx++ % colors.length];
         }
