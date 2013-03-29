@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>reveal.js - The HTML Presentation Framework</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+    <section>
+        <h1>how google test software</h1>
+        <p>
+        <img src="http://aaronweitekamp.files.wordpress.com/2012/10/how-google-tests-software.jpg?w=300&amp;h=241">
+        <br>
+    </p>
+</section>
+<section>
+    <h2>Overview</h2>
+    <div>
+        <ol>
+            <li>Ideologies</li>
+            <li>
+                <span style="line-height: 1.2em;font-size: 36.0px;letter-spacing: -0.02em;">Roles</span>
+            </li>
+            <li>
+                <span style="line-height: 1.2em;font-size: 36.0px;letter-spacing: -0.02em;">Methodologies</span>
+            </li>
+            <li>
+                <span style="line-height: 1.2em;font-size: 36.0px;letter-spacing: -0.02em;">Types of tests</span>
+            </li>
+            <li>
+                <span style="line-height: 1.2em;font-size: 36.0px;letter-spacing: -0.02em;">Tools</span>
+            </li>
+            <li>
+                <span style="line-height: 1.2em;font-size: 36.0px;letter-spacing: -0.02em;">Roles for us.</span>
+            </li>
+        </ol>
+    </div>
+</section>
+<section>
+    <section>
+        <h2>Ideologies</h2>
+        <div>
+            <span style="font-size: 36px; letter-spacing: -0.02em; line-height: 1.2em;">Entire team is responsible for quality.</span>
+            <br>
+        </div>
+        <aside class="notes">
+          The only way a team can write quality software is when the entire team is responsible for quality. ie. PM, Dev, Testers... everyone.
+        </aside>
+    </section>
+    <section>
+        <h2>Ideologies</h2>
+        <div>
+            <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Entire team is responsible for quality.</span>
+        </div>
+        <div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+            <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">
+                <b>Google engineers prefer quality over features.</b>
+            </span>
+            <br>
+        </div>
+        <aside class="notes" data-markdown>
+        * Get it right from the beginning or you've created a permanent mess.
+        * Teams simply stop adding features when incoming bug rate exceeds the team's ability to fix them.
+        </aside>
+    </section>
+    <section>
+        <h2>Ideologies</h2>
+<div>
+    <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Entire team is responsible for quality.</span>
+    <br>
+    <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Google engineers prefer quality over features.</span>
+    <br>
+</div>
+<div>
+    <span style="text-align: left;">
+        <br>
+    </span>
+</div>
+<div>
+    <span style="text-align: left;">
+        <b>Optimize for both quality and speed.</b>
+        <br>
+    </span>
+</div>
+<aside class="notes" data-markdown>
+
+* Testing must not create friction that slows down innovation and development.
+* A large part of productivity is avoiding re-work because of sloppy development.
+</aside>
+</section>
+        <section>
+            <h2>Ideologies</h2>
+<div>
+    <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Entire team is responsible for quality.</span>
+    <br>
+    <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Google engineers prefer quality over features.</span>&nbsp;</div>
+<div>
+</div>
+<div>
+    <span style="text-align: left;">
+        Optimize for both quality and speed.
+        <br>
+    </span>
+</div>
+<div>
+    <span style="text-align: left;">
+        <br>
+    </span>
+</div>
+<div>
+    <span style="text-align: left;">
+        <b>Quality != Test</b>
+        <br>
+    </span>
+</div>
+<aside class="notes">
+  UX, speed, scalable, reliable, secure, internationalized, accessible, testable
+</aside>
+</section>
+            <section>
+                <h2>Ideologies</h2>
+<div>
+    <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Entire team is responsible for quality.</span>
+    <br>
+    <span style="text-align: left; line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">Google engineers prefer quality over features.</span>&nbsp;</div>
+<div>
+</div>
+<div>
+    <span style="text-align: left;">
+        Optimize for both quality and speed.&nbsp;</span>
+            </div>
+            <div>
+</div>
+<div>
+    <span style="text-align: left;">
+        Quality != Test
+        <br>
+    </span>
+</div>
+            <div>
+                <span style="text-align: left;">
+                    <br>
+                </span>
+            </div>
+            <div>
+                <span style="text-align: left;">
+                    <b>Quality is not important until the software is important</b>
+                    <br>
+                </span>
+            </div>
+            <aside class="notes">
+              Test in the order of risks
+            </aside>
+
+</section>
+        </section>
+        <section>
+            <section>
+                <h2>Roles</h2>
+                <div>
+                    <ul>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Engineering Productivity Team</span>
+                            <br>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Software Engineer</span>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Software Engineer in Test</span>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Test Engineer</span>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Test Director</span>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <br>
+                </div>
+            </section>
+            <section>
+                <h2>Engineering Productivity</h2>
+                <div>"overcome bias against testing and a company culture that favored heroic effort over engineering rigor."</div>
+            </section>
+            <section>
+                <h2>Software Engineer</h2>
+                <div>
+                    <ul>
+                        <li>fault tolerant designs</li>
+                        <li>failure recovery</li>
+                        <li>TDD</li>
+                        <li>unit tests<br>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h2>SET</h2>
+                <div>
+                    <ul>
+                        <li>Review designs</li>
+                        <li>Check code quality and risk</li>
+                        <li>Refactor code to make it more testable.&nbsp;</li>
+                        <li>Write testing frameworks and automation.<br>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <h2>TE</h2>
+                <div>
+                    <ul>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">User focused</span>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Product experts</span>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Quality advisers and analyzers of risk.&nbsp;</span>
+                        </li>
+                        <li>
+                            <span style="line-height: 1.2em; text-align: center; font-size: 36px; letter-spacing: -0.02em;">Write automation scripts.</span>
+                        </li>
+                        <li>
+                            <span style="font-size: 36px; letter-spacing: -0.02em; line-height: 1.2em; text-align: center;">Coordinate with contract testers, <br>dogfooders and beta users etc.</span>
+                        </li>
+                    </ul>
+                </div>
+                <aside class="notes">
+                  Test directors and managers.
+                </aside>
+            </section>
+        </section>
+        <section>
+            <h2>methodologies</h2>
+<div>
+    <ul>
+        <li>Make testing a feature<br>
+        </li>
+        <li>Centers around Code review<br>
+        </li>
+        <li>Single Repository</li>
+        <li>CI with submit queue</li>
+        <li>
+            Test suite<span style="line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">
+            <br>- Parallel on single machine.</span>
+            <span style="line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+        </li>
+    </ul>
+</div>
+    <aside class="notes" data-markdown>
+      * Code must be designed to be testable and tested.
+      * Ensure the entire codebase has the look and feel of having been written by a single developer.
+      * Single Repo: little to relearn, unified tool, code reuse, high quality shared code.
+      * CI: should provide the exact change that a test failed, submit queue auto merges, there's another talk.
+      * Suite: Rewritten to drop single resource dependencies
+    </aside>
+</section>
+<section>
+    <section>
+        <h2>TYPEs of Tests</h2>
+        <div>
+            <ul>
+                <li>Small</li>
+                <li>Medium</li>
+                <li>Large</li>
+                <li>(Enormous)</li>
+            </ul>
+        </div>
+    </section>
+    <section>
+        <h2>Small</h2>
+        <div>
+            <ul>
+                <li>All mocked, no http or database calls</li>
+                <li>
+                    <span style="line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">&lt; 1 min</span>
+                </li>
+                <li>
+                    <span style="line-height: 1.2em; font-size: 36px; letter-spacing: -0.02em;">70%</span>
+                </li>
+            </ul>
+        </div>
+        <aside class="notes">
+          mostly automated, exercise the code within signle function or module.
+        </aside>
+    </section>
+    <section>
+        <h2>Medium</h2>
+        <div>
+            <ul>
+                <li>Database, localhost calls</li>
+                <li>&lt; 5 mins</li>
+                <li>20%</li>
+            </ul>
+        </div>
+        <aside class="notes">
+          Does a set of near neighbor functions interoperate with each other the way they are supposed to?
+        </aside>
+    </section>
+    <section>
+        <h2>Large</h2>
+        <div>
+            <ul>
+                <li>Allowed to call external service</li>
+                <li>Focus on user's expectation</li>
+                <li>&lt; 1hr</li>
+                <li>10%</li>
+            </ul>
+        </div>
+        <aside class="notes" data-markdown>
+          "More results-driven, checking that the software satisfies user needs"
+
+          "Does the product operate the way a user would expect and produce the desired results?"
+
+          The larger an automation effort is, the harder it is to maintain and the more brittle it becomes as the systemm evovles.
+        </aside>
+
+    </section>
+</section>
+<section>
+    <section>
+        <h2>Tools</h2>
+        <div>
+            <ul>
+                <li>
+                    <b>Test Analytics</b>
+                    <br>ACC (Attribute Component Capability)<br>
+                </li>
+                <li>
+                    <b>Google Test Case Manager</b>
+                    <br>Manual test cases, Exploratory testing<br>
+                </li>
+                <li>
+                    <b>Buganizer</b>
+                    <br>Triage, accountability, reports, search before filing<br>
+                </li>
+                <li>
+                    <b>Record Playback Framework</b>
+                    <br>record and generate selenium tests.&nbsp;</li>
+                </ul>
+            </div>
+        </section>
+        <section>
+            <h2>Test Analytics</h2>
+            <div>
+                <img src="http://2.bp.blogspot.com/-BZtUDMLdwG4/UBwLCBDN1jI/AAAAAAAAAMY/ZdTmW_xYNjA/s1600/2-Capabilities.png">
+                <br>
+            </div>
+            <aside class="notes" data-markdown>
+              Test plans , hard to maintain
+              We want to test in the order of risk.
+              * frequency of failure and impact - relative risk
+              * analyze bugs using ACC
+            </aside>
+        </section>
+        <section>
+            <h2>Bugs</h2>
+            <div>
+                <ul>
+                    <li>Severity: how much it affects functionality.<br>
+                    </li>
+                    <li>Priority: how soon it should be fixed.<br>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </section>
+    <section>
+        <h2>Roles for US</h2>
+        <div>SWE == SET</div>
+        <div>Team Lead =~ TE</div>
+        <div>(Test Engineering Designer)</div>
+        <div>Devops = Engineer Productivity + Engineering Tools</div>
+        <div>
+            <br>
+        </div>
+        <div>
+            <div>TE Designer = Test design and coordination, identify resources required for testing.</div>
+            <div style="text-align: left;">
+                <br>
+            </div>
+            <div style="text-align: left;">To encourage testing:</div>
+            <div style="text-align: left;">
+                <ul>
+                    <li>
+                        <span style="font-size: 36px; letter-spacing: -0.02em; line-height: 1.2em; text-align: center;">OKRs</span>
+                    </li>
+                    <li>
+                        <span style="font-size: 36px; letter-spacing: -0.02em; line-height: 1.2em; text-align: center;">Certification program (test coverage, test speeds, 0 flaky tests, automated smoke test etc).</span>
+                        <br>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <aside class="notes" data-markdown>
+            * weak points in software
+            * security, privacy, performance, reliability, usability, compatibility, globalization concerns
+            * primary user scenarios
+            * interoperate with other products
+            * how good are diagnostics, fall back
+            * usage metrics, user feedbacks
+        </aside>
+    </section>
+</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'beige', //Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'default',//Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
