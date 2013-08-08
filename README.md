@@ -1,4 +1,4 @@
 Presentations
 =============
-`git push gh-pages`
+`git push origin gh-pages`
 
