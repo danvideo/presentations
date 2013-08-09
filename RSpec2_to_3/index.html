@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Rspec Syntax</title>
+
+		<meta name="description" content="Presentation on RSpec">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+<div class="slides">
+    <section>
+        <h1>RSpec 2 syntax</h1>
+        <h2>RSpec 3 preview</h2>
+</section>
+<section>
+    <strong>.rspec</strong>
+    <div>
+      <pre><code class="ruby">
+--color
+--format documentation
+--debug # auto require ruby-debug, but this is going away in rspec3
+--drb # look for spork
+      </code></pre>
+    </div>
+</section>
+<section>
+    <strong>describe vs context</strong>
+    <div>
+      <pre><code class="ruby">
+describe '.a_method' do
+context 'when case A' do
+context 'when case B' do
+      </code></pre>
+    </div>
+</section>
+<section>
+    <strong>class vs instance methods</strong>
+    <div>
+      <pre><code class="ruby">
+describe '.a_class_method' do
+describe '#an_instance_method' do
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>let</strong>
+    <div>
+      <pre><code class="ruby">
+let(:user)  { create(:user) } # lazy eval and memoized.
+let!(:user) { create(:user) } # force eval and memoize.
+
+def reusable_routine(arg)
+  # not memoized logic
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>subject</strong>
+    <div>
+      <pre><code class="ruby">
+described_class # describe MyClass do
+subject # MyClass.new
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>let inheritence</strong>
+    <div>
+      <pre><code class="ruby">
+describe Array do
+  let(:numbers) { [1, 2, 3, 4] }
+
+  context "when evens are filtered out" do
+    let(:numbers) { super().reject(&:even?) }
+  end
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>short form & named subject</strong>
+    <div>
+      <pre><code class="ruby">
+context "when user_id is nil" do
+  it { should_not be_valid }
+  its(:user_id) { should be_nil }
+end
+
+context "when user is nil" do
+  subject(:petition) { described_class.new(params) }
+  let(:params) { { user_id: nil } }
+  it { should_not be_valid }
+  it { expect(petition).to_not be_active }
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>Implicit docstring</strong>
+    <div>
+      <pre><code class="ruby">
+  # explicit docstring
+  let(:params) { {} }
+  it "raise InvalidParams" do # verbose and duplicated.
+    expect { subject.save! }
+     .to raise_error(RequestObjects::Errors::InvalidParams)
+  end
+
+  # implicit
+  it do # empty spec title
+    expect { subject.save! }
+     .to raise_error(RequestObjects::Errors::InvalidParams)
+  end
+
+  ----
+
+  RequestObject
+    invalid email
+      should raise RequestObjects::Errors::InvalidParams
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>metadata</strong>
+    <div>
+      <pre><code class="ruby">
+describe '.my_method', :database_cleaner => :all do
+end
+
+RSpec.configure do |config|
+    config.after(:each) do
+      if example.metadata[:database_cleaner] != :all
+        DatabaseCleaner.clean
+      end
+    end
+    config.after(:all, database_cleaner: :all) do
+      DatabaseCleaner.clean
+    end
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>shoulda matchers</strong>
+    <div>
+      <pre><code class="ruby">
+        # https://github.com/thoughtbot/shoulda-matchers
+        gem "shoulda-matchers"
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>Matchers to test associations</strong>
+    <div>
+      <pre><code class="ruby">
+describe Post do
+  it { should belong_to(:user) }
+  it { should have_many(:tags).through(:taggings) }
+end
+
+describe User do
+  it { should have_many(:posts) }
+end
+      </code></pre>
+    </div>
+</section>
+
+
+
+<section>
+    <strong>Matchers to test validations and mass assignments</strong>
+    <div>
+      <pre><code class="ruby">
+describe Post do
+  it { should validate_uniqueness_of(:title) }
+  it { should validate_uniqueness_of(:title).scoped_to(:user_id, :category_id) }
+  it { should validate_presence_of(:body).with_message(/wtf/) }
+  it { should validate_presence_of(:title) }
+  it { should validate_numericality_of(:user_id) }
+  it { should ensure_inclusion_of(:status).in_array(['draft', 'public']) }
+end
+
+describe User do
+  it { should_not allow_value("blah").for(:email) }
+  it { should allow_value("a@b.com").for(:email) }
+  it { should ensure_inclusion_of(:age).in_range(1..100) }
+  it { should_not allow_mass_assignment_of(:password) }
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>expect syntax</strong>
+    <div>
+      <pre><code class="ruby">
+expect(subject).to eq value
+expect(subject).to be >= value
+
+# not_to and to_not both works
+expect(subject).to_not eq value
+expect(subject).not_to eq value
+
+# if you have #fuzzy? defined
+expect(subject).to be_fuzzy
+
+# match partial hash
+expect(subject.attributes).to include(my_partial_hash)
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>expect syntax lambdas</strong>
+    <div>
+      <pre><code class="ruby">
+# lambdas
+expect { subject.call }.to change(described_class, :count).by(1)
+expect { subject.call }.to change { subject.reload.count }.by(1)
+expect { subject.call }.to raise_error(Exception)
+
+# disable 'should' syntax in config
+config.expect_with :rspec do |c|
+  c.syntax = :expect
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>should syntax</strong>
+    <div>
+      <pre><code class="ruby">
+# `should` is still supported in RSpec3
+# we do want to encourage people to switch to the new syntax,
+# so we plan to make RSpec 3 print a warning on first usage of
+# any the old syntax methods (should, should_not, should_receive, etc)
+# unless the should syntax has been explicitly enabled.
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>rspec-mock</strong>
+    <div>
+      <pre><code class="ruby">
+# mock
+expect(subject).to receive(:method_call).with(arg1, arg2).and_return(value)
+expect(subject).to receive(:method_call).with(arg1, arg2) { |obj|
+  # your custom values.
+}
+expect(subject).to receive(:method_call).with(arg1, arg2).and_call_original
+
+# stub
+allow(subject).to receive(:method_call) { returning_value }
+allow(subject).to receive(:method_call).and_raise('an error')
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>param matching</strong>
+    <div>
+      <pre><code class="ruby">
+.with(anything())
+.with(an_instance_of(User))
+.with(hash_including(:a => 'b'))
+.with(/abc/)
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>call counts and order</strong>
+    <div>
+      <pre><code class="ruby">
+receive(:call).once
+receive(:call).exactly(3).times
+receive(:call).at_least(n).times
+receive(:call).at_most(n).times
+
+# ordered
+receive(:one).ordered
+receive(:two).ordered
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>RSpec3 preview</strong>
+    <div>
+      <pre><code class="ruby">
+# Towards zero monkey patch
+# prefix Rspec, move away from `should` syntax
+RSpec.describe MyClass do
+  # Within an example group you'll still be able to use
+  # a bare `describe`:
+  describe "#some_method" do
+  end
+
+  # And you'll be able to use a bare `shared_examples_for`:
+  shared_examples_for "something" do
+  end
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>explicitly yield the example</strong>
+    <div>
+      <pre><code class="ruby">
+describe MyClass, user_role: :admin do
+  before(:each) { |example| puts example.metadata[:user_role] }
+  subject       { |example| }
+
+  # before(:all) will NOT yield an example
+
+  it "can access the current example using a block local" do |example|
+    # do something with `example`
+  end
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>any_instance block implementations will yield the receiver</strong>
+    <div>
+      <pre><code class="ruby">
+allow_any_instance_of(User).to receive(:age) do |user|
+  ((Date.today - user.birthdate) / 365).floor
+end
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>Things going away</strong>
+    <div>
+      <ul>
+        <li>`its` will be moved into an external gem</li>
+        <li>no more debugger support</li>
+        <li>no more RCov integration</li>
+        <li>autotest integration will be movd to external gem</li>
+      </ul>
+    </div>
+</section>
+
+<section>
+    <strong>rspec-fire</strong>
+    <div>
+<p>Checks that stubbed methods on your test double exist</p>
+<span>(rspec3 will incorporate similar funcationality)</span>
+    </div>
+</section>
+
+<section>
+    <strong>instance_double</strong>
+    <div>
+      <pre><code class="ruby">
+  notifier = instance_double("EmailNotifier")
+  notifier.should_receive(:notify).with("suspended as")
+  User.new(notifier).suspend! # explicit dependency
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>class_double</strong>
+    <div>
+      <pre><code class="ruby">
+  notifier = class_double("EmailNotifier").as_stubbed_const
+  notifier.should_receive(:notify).with("suspended as")
+  User.new.suspend!
+      </code></pre>
+    </div>
+</section>
+
+<section>
+    <strong>Links</strong>
+    <div>
+      <ul>
+        <li><a href="http://myronmars.to/n/dev-blog/2013/07/the-plan-for-rspec-3">http://myronmars.to/n/dev-blog/2013/07/the-plan-for-rspec-3</a></li>
+        <li><a href="http://betterspecs.org/">http://betterspecs.org/</a></li>
+        <li><a href="https://www.relishapp.com/rspec/">https://www.relishapp.com/rspec/</a>
+      </ul>
+    </div>
+</section>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: 'beige', //Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: 'default',//Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
