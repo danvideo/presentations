@@ -7,17 +7,22 @@
 * Tmux
   * visual mode
   * split panes
+  * resize
   * pair program
+  * mouse integration
 
 * Vimium
   * unmap t (for github)
 
 * slate
-
+  * between screens
+  * nudge
+  
 * Apptivate 
 
 * Vim
-  * auto complete
+  * auto complete with ctags
+  * ctrlp 
   * git
   * auto align
   * surround
