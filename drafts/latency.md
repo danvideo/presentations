@@ -16,12 +16,13 @@ __Network__
 * TCP 
   - Ack connection
   - CWND
+  - MTU
 * Bufferbloat
 * Mobile 3G, HSPA, LTE, Wifi 802.11n/ac
 * DosArrest - ip filtering.
 * SSL
 * HTTP (watch out for redirect)
-* non-blocking, vs threaded
+* websocket less overhead than ajax.
 * App data access sequence.
 * SOA/RPC protocol
   * HTTP
@@ -51,6 +52,7 @@ __Application__
 * dynamic programming / memoization.
 * concurrency - contention (ConcurrentHashMap, message passing)
 * code path, data access sequence
+* non blocking vs threaded (watch out for synchronised cpu intensive code)
 
 __Data__
 
@@ -79,6 +81,7 @@ __Data structures__
 * Mysql Index - B+tree
 * Redis Hash (limiting size can optimize memory)
 * Redis ordered sets - skip list
+* trie - autocomplete, Rails routes
 
 __All together__
 
