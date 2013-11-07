@@ -4,10 +4,11 @@
 * Browser parsing 
   * HTML - DOM
   * CSS tree
-  * execute javascript
-  * render into rasterized images
+  * execute javascript - v8
+  * render into rasterized images - blink
   * Rails4 - Turbolinks - ajax replace content to avoid reparsing css, js.
-  
+  * Chrome does a lot of prediction.
+ 
 __Network__
 
 * Light speed (locality)
@@ -16,9 +17,10 @@ __Network__
   - Ack connection
   - CWND
 * Bufferbloat
+* Mobile 3G, HSPA, LTE, Wifi 802.11n/ac
 * DosArrest - ip filtering.
 * SSL
-* HTTP
+* HTTP (watch out for redirect)
 * non-blocking, vs threaded
 * App data access sequence.
 * SOA/RPC protocol
@@ -34,6 +36,8 @@ __Network__
 * QUIC (over UDP)
   * fast open (remove connect RTT)
   * snapstart 
+* chrome://net-internals/ 
+* chrome://flags/
 
 __Application__
 
