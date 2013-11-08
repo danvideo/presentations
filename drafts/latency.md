@@ -1,7 +1,49 @@
-### Latency in Web Applications
+### Web Applications Performance
 
 * 0 latency = do nothing. (do as little as possible)
 * Measure RUM, 95%, 75%, compare between locations, mobile vs desktop.
+
+```
+ ___________
+|  Browser  |
+| --------- |
+|  Network  |
+| --------- |
+|  App      |
+| --------- |
+|  Storage  |
+|___________|
+
+```
+
+__What is fast enough?__
+
+<table border="1" class="delay" width="100%">
+<tbody><tr>
+<td class="header">Delay</td>
+<td class="header">User Reaction</td>
+</tr>
+<tr>
+<td class="green">0 - 100ms</td>
+<td>Instant</td>
+</tr>
+<tr>
+<td>100 - 300ms</td>
+<td>Small perceptible delay</td>
+</tr>
+<tr>
+<td>300 - 1000ms</td>
+<td>Machine is working</td>
+</tr>
+<tr>
+<td class="red">1s+</td>
+<td>Mental context switch</td>
+</tr>
+<tr>
+<td class="red">10s+</td>
+<td>I'll come back later...</td>
+</tr>
+</tbody></table>
 
 __Browser__
 
@@ -99,5 +141,14 @@ __All together__
   * Warm - pipe, cache
   * Compact data - protocol, storage, retrieval
   * Respond early to start download
-  * fetch data from memory
+  * fetch data from memory, data structure efficiency
   * Limit necessary JS/CSS for initial rendering.
+ 
+__References__
+
+* [Blink’s Rendering Pipeline](https://docs.google.com/a/change.org/document/d/1wYNK2q_8vQuhVSWyUHZMVPGELzI0CYJ07gTPWP1V1us/pub)
+* http://www.igvita.com/2013/01/15/faster-websites-crash-course-on-web-performance/
+* http://www.igvita.com/posa/high-performance-networking-in-google-chrome/
+* http://www.chromium.org/spdy/
+* Bufferbloat - http://queue.acm.org/detail.cfm?id=2209336
+* http://chimera.labs.oreilly.com/books/1230000000545
