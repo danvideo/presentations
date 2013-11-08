@@ -1,13 +1,19 @@
 ### Latency in Web Applications
 
 * 0 latency = do nothing. (do as little as possible)
+* Measure RUM, 95%, 75%, compare between locations, mobile vs desktop.
+
+__Browser__
+
 * Browser parsing 
   * HTML - DOM
   * CSS tree
   * execute javascript - v8
-  * render into rasterized images - blink
+  * render (paint and composite) into rasterized images - blink (multithreaded)
   * Rails4 - Turbolinks - ajax replace content to avoid reparsing css, js.
   * Chrome does a lot of prediction.
+  * HTTP cache headers (we're not doing them)
+  * LocalStorage
  
 __Network__
 
@@ -28,7 +34,7 @@ __Network__
   * HTTP
   * Protobuf / MessagePack
   * Typhoeus - libcurl - reuse TCP connection.
-* chunked encoding
+* chunked encoding (facebook BigPipe, PageSpeed)
 * SPDY
   * Over SSL
   * binary protocol
@@ -53,6 +59,8 @@ __Application__
 * concurrency - contention (ConcurrentHashMap, message passing)
 * code path, data access sequence
 * non blocking vs threaded (watch out for synchronised cpu intensive code)
+* CPU - IPC, instructions per cycle
+* bit hacking.
 
 __Data__
 
@@ -67,7 +75,8 @@ __Data__
   * stored procedures
   * contention / locking
   * storage engine - innodb
-  * fetch from disk (RAID, disk cache, file system)
+  * fetch from disk (RAID, disk buffer, file system (journalling mode), SSD)
+  * true sequential read (patch from Facebook)
 * Memcache
   * distributed, hashed.
   * multi get
@@ -82,6 +91,7 @@ __Data structures__
 * Redis Hash (limiting size can optimize memory)
 * Redis ordered sets - skip list
 * trie - autocomplete, Rails routes
+* Ruby Hash - doubling linked list, thats why they are ordered but also why slower than Python Dict.
 
 __All together__
 
