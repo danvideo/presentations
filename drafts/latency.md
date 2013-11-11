@@ -108,7 +108,7 @@ __Data__
 
 * MySQL 
   * connection pool
-  * sql cache (by hash)
+  * query cache (by hash)
   * parse (prepared statements?)
   * optimizer
   * index
@@ -116,7 +116,7 @@ __Data__
   * protocol (binary?)
   * stored procedures
   * contention / locking
-  * storage engine - innodb
+  * storage engine - innodb, buffer pool
   * fetch from disk (RAID, disk buffer, file system (journalling mode), SSD)
   * true sequential read (patch from Facebook)
 * Memcache
@@ -134,6 +134,7 @@ __Data structures__
 * Redis ordered sets - skip list
 * trie - autocomplete, Rails routes
 * Ruby Hash - doubling linked list, thats why they are ordered but also why slower than Python Dict.
+* Log structured merge tree (LevelDB - Riak, Chrome, ActiveMQ) 
 
 __All together__
 
