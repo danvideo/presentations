@@ -134,7 +134,7 @@ __Data structures__
 * Redis ordered sets - skip list
 * trie - autocomplete, Rails routes
 * Ruby Hash - doubling linked list, thats why they are ordered but also why slower than Python Dict.
-* Log structured merge tree (LevelDB - Riak, Chrome, ActiveMQ) 
+* Log structured merge tree (LevelDB - Riak, Chrome, ActiveMQ, (BigTable, Cassendra))
 
 __All together__
 
