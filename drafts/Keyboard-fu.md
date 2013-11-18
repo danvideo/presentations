@@ -1,9 +1,9 @@
 ### Keyboard-fu
 
 * Mac
-- Ctrl-F2	Move focus to the menu bar
-- Ctrl-F3	Move focus to the Dock
-- Ctrl-F8 Move focus to menu
+  - Ctrl-F2	Move focus to the menu bar
+  - Ctrl-F3	Move focus to the Dock
+  - Ctrl-F8 Move focus to menu
 
 * Jumpcut
 
@@ -14,6 +14,8 @@
 
 * Vimium
   * unmap t (for github)
+  * gmail 
+  * facebook
 
 * Zsh
   * oh-my-zsh
@@ -22,7 +24,7 @@
   
 * Tmux
   * visual mode
-  * split panes
+  * split panes, rotate, horizontal/vertical
   * resize
   * pair program
   * mouse integration
