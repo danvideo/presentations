@@ -30,9 +30,15 @@
   * mouse integration
 
 * Vim
+  __Sublime equivalent__
+  * NerdTree (but better - add, remove, move, bookmarks)
+  * Ctrlp (multifile, splits)
+  * Fugitive (but better - Gblame, Glog, Gllog, Gedit)
+
+  * Syntastic
+  * Git gutter
+  
   * auto complete with ctags
-  * ctrlp 
-  * git
   * auto align
   * surround
 
