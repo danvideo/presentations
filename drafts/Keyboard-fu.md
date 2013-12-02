@@ -16,6 +16,7 @@
   * unmap t (for github)
   * gmail 
   * facebook
+  * duckduckgo - https://duck.co/help/features/keyboard-shortcuts
 
 * Zsh
   * oh-my-zsh
