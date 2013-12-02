@@ -22,6 +22,7 @@
   * oh-my-zsh
   * auto complete (auto expand, ssh)
   * autojump - https://github.com/joelthelion/autojump
+  * https://github.com/rupa/z
   
 * Tmux
   * visual mode
