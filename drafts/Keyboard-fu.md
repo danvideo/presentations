@@ -5,6 +5,9 @@
   - Ctrl-F3	Move focus to the Dock
   - Ctrl-F8 Move focus to menu
 
+* Alfred
+  * sleep
+  
 * Jumpcut
 
 * slate
